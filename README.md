@@ -50,6 +50,11 @@ git commit -m "Remove runtime ranking from tracking"
 
 Para detalhes sobre como debugar com VS Code e configurações recomendadas, veja `VSCODE-JAVA-DEBUG.md`.
 
-Para documentação do código, veja `docs/` (Javadoc) e `DOCUMENTACAO-CODIGO.md`.
+Para documentação do código e recursos úteis, veja os links abaixo:
+
+- Javadoc (HTML gerado): [docs/index.html](docs/index.html)
+- Documentação explicativa: [DOCUMENTACAO-CODIGO.md](DOCUMENTACAO-CODIGO.md)
+- Guia de depuração no VS Code: [VSCODE-JAVA-DEBUG.md](VSCODE-JAVA-DEBUG.md)
+- Código-fonte: [src/missao](src/missao)
 
 Use este projeto como ponto de partida para exercícios de refatoração (SOLID), testes e aplicação de padrões.
