@@ -10,7 +10,7 @@ Conteúdo:
 Compilar e executar (a partir da raiz do repositório):
 
 ```bash
-javac -d out missaoMarteUnifor/oo-console/src/missao/*.java
+javac -d out src/missao/*.java
 java -cp out missao.Main
 ```
 
