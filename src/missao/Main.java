@@ -48,6 +48,7 @@ public class Main {
             pilotoNome = "Piloto Anônimo";
         }
 
+        Astronauta astronauta = new Astronauta(pilotoNome, maxX, maxY);
         // Cabeçalho e instruções iniciais do jogo
         System.out.println("================================================================");
         System.out.println("Missão Marte Unifor — Console");
@@ -97,7 +98,7 @@ public class Main {
 
             while (running) {
                 // Desenha o estado atual do mapa no console
-                desenharMapa(missao, -5, 5, -5, 5, score, pilotoNome);
+                desenharMapa(missao, -5, 5, -5, 5, score, astronauta.getNome());
                 System.out.printf("Nave em (%d,%d) | Pontos: %d | Passageiros a bordo: %d | Passageiros restantes: %d\n",
                         nave.getX(), nave.getY(), score, nave.getPassageiros().size(), missao.todosEmbarcados() ? 0 : missao.getPassageiros().size());
 
@@ -126,6 +127,15 @@ public class Main {
                             // `embarcarPassageiroNaPosicao` remove o passageiro do solo
                             // apenas se o embarque na nave for bem-sucedido
                             boolean ok = missao.embarcarPassageiroNaPosicao();
+                            switch (p.getTipo()) {
+                                case "Professor":
+                                
+                                    score += p.getPontuacao();
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
                             if (ok) {
                                 score += 10; // bônus por embarque
                                 System.out.println("Passageiro embarcado. +10 pontos!");
@@ -151,7 +161,7 @@ public class Main {
                     System.out.printf("Pontuação final: %d\n", score);
                     if (score > 0 && isTopScore(ranking, score)) {
                         // Atualiza ranking e persiste no disco
-                        ranking.add(new RankingEntry(pilotoNome, score));
+                        ranking.add(new RankingEntry(astronauta.getNome(), score));
                         ranking = ranking.stream()
                                 .sorted(Comparator.comparingInt((RankingEntry e) -> e.score).reversed())
                                 .limit(5)
@@ -209,7 +219,7 @@ public class Main {
      * @return nova `Missao` configurada
      */
     private static Missao criarNovaMissao(Random random, int minX, int maxX, int minY, int maxY) {
-        Nave nave = new Nave("A-1", 3);
+        Nave nave = new Nave("A-1", 5);
         Missao missao = new Missao(nave);
 
         // Cria 3 passageiros em posições aleatórias dentro dos limites
@@ -300,7 +310,7 @@ public class Main {
             for (int x = minX; x <= maxX; x++) {
                 char symbol = '.';
                 if (missao.getNave().getX() == x && missao.getNave().getY() == y) {
-                    symbol = 'N';
+                    symbol = '@';
                 } else {
                     // verifica passageiros primeiro (preferência de desenho)
                     for (Passageiro p : missao.getPassageiros()) {
@@ -318,7 +328,7 @@ public class Main {
                     if (symbol == '.') {
                         for (Asteroide a : missao.getAsteroides()) {
                             if (a.getX() == x && a.getY() == y) {
-                                symbol = 'A';
+                                symbol = '#';
                                 break;
                             }
                         }
