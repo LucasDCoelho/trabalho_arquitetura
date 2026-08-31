@@ -1,6 +1,6 @@
 # Missão Marte Unifor — Jogo OO em Console
 
-**Disciplina:** Programação Orientada a Objetos  
+**Disciplina:** Projeto arquitetura de sistemas 
 **Repositório:** https://github.com/LucasDCoelho/trabalho_arquitetura
 
 ## Integrantes
